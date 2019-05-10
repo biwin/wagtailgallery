@@ -12,9 +12,7 @@ from django.template.defaultfilters import slugify
 from wagtail.search import index
 from django.utils.translation import ugettext_lazy as _
 import django.http
-
-
-# Create your models here.
+from wagtail.images import get_image_model_string
 
 class GalleryParentPage(RoutablePageMixin, Page):
     """
@@ -334,7 +332,7 @@ class GalleryImage(Orderable):
     """Optional description of a particular image. Used as a caption for said image."""
 
     image = models.ForeignKey(
-        'wagtailimages.Image',
+        get_image_model_string(),
         null=True,
         blank=False,
         on_delete=models.SET_NULL,
